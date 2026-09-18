@@ -1,0 +1,28 @@
+services:
+
+  api:
+    build: .
+    container_name: studio-as-meta-bot
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:16
+    container_name: studio-as-postgres
+    environment:
+      POSTGRES_DB: studio_as
+      POSTGRES_USER: studio
+      POSTGRES_PASSWORD: studio123
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
