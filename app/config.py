@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -6,15 +6,17 @@ class Settings(BaseSettings):
     app_env: str = "development"
 
     database_url: str
-
     meta_verify_token: str
     meta_access_token: str = ""
     meta_app_secret: str = ""
     meta_page_id: str = ""
     meta_instagram_id: str = ""
 
-    class Config:
-        env_file = ".env"
+    google_calendar_credentials_file: str = ""
+    google_calendar_id: str = ""
+    app_timezone: str = "America/Fortaleza"
+
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
 settings = Settings()
