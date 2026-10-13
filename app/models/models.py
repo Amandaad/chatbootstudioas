@@ -32,3 +32,4 @@ class Agendamento(Base):
     servico_id = Column(Integer, nullable=False)
     data_hora = Column(DateTime, nullable=False)
     status = Column(String(30), default="pendente")
+    google_event_id = Column(String(255), nullable=True)
