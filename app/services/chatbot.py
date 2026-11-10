@@ -1,14 +1,13 @@
 SERVICOS = {
-    "1": ("Selagem", "P R$150 | M R$200 | G R$250"),
-    "2": ("Mechas", "P R$150 | M R$200 | G R$250"),
+    "1": ("Selagem", "P R$180 | M R$220 | G R$250"),
+    "2": ("Mechas", "Preço sob consulta com a equipe"),
     "3": ("Corte + Escova", "R$50"),
-    "4": ("Escova", "P R$25 | M R$30 | G R$35"),
-    "5": ("Cílios", "R$70"),
-    "6": ("Micropigmentação", "R$250"),
+    "4": ("Escova", "P R$30 | M R$35 | G R$40"),
+    "5": ("Cílios", "Preço sob consulta com a equipe"),
+    "6": ("Micropigmentação", "Preço sob consulta com a equipe"),
     "7": (
         "Depilação",
-        "Axila R$20 | Meia perna R$20 | "
-        "Perna completa R$40 | Buço R$10 | Face R$50"
+        "Preço sob consulta com a equipe"
     ),
 }
 
@@ -36,7 +35,6 @@ def responder(mensagem: str):
 
     if mensagem in SERVICOS:
         nome, preco = SERVICOS[mensagem]
-
         return f"""✨ {nome}
 
 Valores: {preco}
