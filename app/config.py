@@ -13,6 +13,11 @@ class Settings(BaseSettings):
     meta_page_id: str = ""
     meta_instagram_id: str = ""
 
+    # Twilio WhatsApp
+    twilio_auth_token: str = ""
+    # URL pública exata configurada no Console da Twilio (opcional, recomendada atrás de proxy).
+    twilio_webhook_url: str = ""
+
     class Config:
         env_file = ".env"
 
