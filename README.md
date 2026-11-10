@@ -85,3 +85,44 @@ Chatbot Python
    │
    ▼
 Agendamento
+
+
+---
+
+## 📲 Integração com WhatsApp via Twilio
+
+O projeto também possui um endpoint para receber mensagens do WhatsApp pela Twilio.
+
+### Endpoint
+
+`POST /webhook/twilio`
+
+Configure esse endereço como webhook de mensagens recebidas no Sandbox do WhatsApp ou no número WhatsApp habilitado na Twilio. O endpoint:
+
+1. Valida o cabeçalho `X-Twilio-Signature` usando o Auth Token da conta.
+2. Lê os campos `From` e `Body` enviados pela Twilio.
+3. Encaminha o texto para o serviço existente `responder()`.
+4. Devolve a resposta em TwiML para a Twilio enviar ao cliente.
+
+### Variáveis de ambiente
+
+Copie `.env.example` para `.env` e preencha os valores reais:
+
+- `TWILIO_AUTH_TOKEN`: Auth Token da conta Twilio (mantenha em segredo).
+- `TWILIO_WEBHOOK_URL`: URL pública exata cadastrada na Twilio, por exemplo `https://seu-dominio/webhook/twilio`.
+
+Não envie o arquivo `.env` para o GitHub.
+
+### Dependências adicionadas
+
+- `twilio`: validação da assinatura e geração da resposta TwiML.
+- `python-multipart`: leitura segura dos dados de formulário recebidos no webhook.
+
+### Configuração no Console Twilio
+
+1. Ative o WhatsApp Sandbox ou conecte um remetente WhatsApp aprovado.
+2. Em **When a message comes in**, informe a URL pública `https://seu-dominio/webhook/twilio`.
+3. Se estiver usando Cloudflare Tunnel, mantenha o túnel ativo e configure a mesma URL em `TWILIO_WEBHOOK_URL`.
+4. Envie uma mensagem de teste para o número WhatsApp disponibilizado pela Twilio.
+
+> O webhook está integrado ao fluxo de respostas atual do chatbot. A confirmação de horários e a criação de eventos no Google Agenda ainda precisam ser conectadas ao fluxo de agendamento antes de oferecer reservas reais pelo WhatsApp.
